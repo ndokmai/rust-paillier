@@ -11,19 +11,19 @@ use super::traits::*;
 impl Samplable for num::bigint::BigInt {
     fn sample_below(upper: &Self) -> Self {
         use self::num::bigint::{ToBigInt, RandBigInt};
-        let mut rng = rand::OsRng::new().unwrap();
+        let mut rng = rand::thread_rng();
         rng.gen_biguint_below(&upper.to_biguint().unwrap()).to_bigint().unwrap()  // TODO this is really ugly
     }
 
     fn sample(bitsize: usize) -> Self {
         use self::num::bigint::{ToBigInt, RandBigInt};
-        let mut rng = rand::OsRng::new().unwrap();
+        let mut rng = rand::thread_rng();
         rng.gen_biguint(bitsize).to_bigint().unwrap()
     }
 
     fn sample_range(lower: &Self, upper: &Self) -> Self {
         use self::num::bigint::{ToBigInt, RandBigInt};
-        let mut rng = rand::OsRng::new().unwrap();
+        let mut rng = rand::thread_rng();
         rng.gen_biguint_range(&lower.to_biguint().unwrap(), &upper.to_biguint().unwrap()).to_bigint().unwrap()
     }
 }
